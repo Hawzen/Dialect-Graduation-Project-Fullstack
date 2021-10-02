@@ -1,0 +1,44 @@
+.App-body {
+  /* background-color: #2E3440; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.black {
+  color: black;
+}
+
+.chat-input {
+  min-width: 15em;
+  width: 15em;
+  overflow-y: hidden;
+  border-end-end-radius: 0.2em;
+  border-end-start-radius: 0.2em;
+}
+
+.message-list {
+  padding-bottom: 0.7em;
+  border-top-left-radius: 0.4em;
+  border-top-right-radius: 0.4em;
+  max-height: 20em;
+  overflow-y: auto;
+  background-color: #3e4757;
+  /* box-shadow: 0 0 2px black; */
+}
+
+.font-noto {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.Route {
+  color: "black"
+}
