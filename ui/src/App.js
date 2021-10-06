@@ -5,6 +5,7 @@ import {
   ThemeProvider, 
 } from '@material-ui/core';
 import { createMuiTheme } from '@material-ui/core/styles';
+import TestCasesList from "./dialect/TestCasesList";
 
 
 const Dialect = lazy(() => import("./dialect/dialect"));
@@ -18,6 +19,7 @@ export default function App() {
               <Suspense fallback={<div>Loading...</div>}>
                 <Dialect/>
               </Suspense>
+
             </ThemeProvider>
           </header>
         </div>

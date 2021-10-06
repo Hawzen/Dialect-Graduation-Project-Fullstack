@@ -13,7 +13,7 @@ import {
 import { create } from 'jss';
 import rtl from 'jss-rtl';
 import { useEffect, useState, lazy, Suspense } from "react";
-
+import TestCasesList from "./TestCasesList";
 const Plot = lazy(() => import("react-plotly.js"));
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -21,19 +21,24 @@ const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const rtlTheme = createMuiTheme({
     direction: 'rtl',
 });
-  
+
+export {rtlTheme}
 
 export default function Dialect(){
     let [preds, setPreds] = useState({GLF: 0, EGY: 0, IRQ: 0, LEV: 0, NOR: 0})
     return (
         <StylesProvider jss={jss}>
-        <Grid container alignItems="stretch" direction="column">
+            {/* alignItems="stretch" */}
+        <Grid container direction="column" >
             <Grid item style={{margin: "auto", marginTop: "3em"}}>
                 <GlobePlot preds={preds}/>
             </Grid>
             <Grid item>
                 <ControlPanel setPreds={setPreds}/>
             </Grid>
+            {/* <Grid item> 
+                <TestCasesList/>
+            </Grid> */}
         </Grid>
         </StylesProvider>
     )
@@ -126,6 +131,7 @@ function ControlPanel(props){
     const setPreds = props.setPreds;
 
     let [textField, setTextField] = useState("");
+
     
     const updatePreds = () => {
         const message = JSON.stringify({text: textField});
@@ -145,6 +151,10 @@ function ControlPanel(props){
         const timeoutId = setTimeout(updatePreds, 1000);
         return () => clearTimeout(timeoutId);
       }, [textField]);
+    
+    const handleInputChange = (text)=>{
+        setTextField(text)
+    }
     
 
     return (
@@ -169,13 +179,10 @@ function ControlPanel(props){
                 </div>
                 </ThemeProvider>
             </Grid>
-            {/* <Grid item style={{paddingTop: "1em"}}>
-                <Grid container justify="flex-end">
-                <Grid item>
-                    <Button variant="contained" onClick={e => updatePreds()}>SUBMIT</Button>
-                </Grid>
-                </Grid>
-            </Grid> */}
+            <Grid item>
+                <TestCasesList handleInputChange={handleInputChange} />
+            </Grid>
+
         </Grid>
     )
 }
@@ -194,3 +201,4 @@ function ControlPanel(props){
 //         </Grid>
 //     )
 // }
+// testcases - 
