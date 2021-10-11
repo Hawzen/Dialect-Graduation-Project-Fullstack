@@ -3,16 +3,16 @@ import os
 import shutil
 
 from flask import escape
-import numpy as np
-import pandas as pd
+import numpy as np # Not needed 
+import pandas as pd # Not needed 
 import requests
-import torch
+import torch # Not needed
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-from torch.utils.data import DataLoader
-import transformers
-from transformers import AutoModel, AutoConfig, AutoModelForSequenceClassification, AutoTokenizer, BertTokenizer, EarlyStoppingCallback, BatchEncoding
+from torch.utils.data import DataLoader, Dataset
+import transformers # Not needed
+from transformers import AutoModel, AutoConfig, AutoModelForSequenceClassification, AutoTokenizer, BertTokenizer, EarlyStoppingCallback, BatchEncoding # Not needed, not sure
 from transformers import Trainer, TrainingArguments
 from transformers.data.processors.utils import InputFeatures
 from google.cloud import storage
@@ -27,7 +27,7 @@ for blob in blobs:
   blob.download_to_filename("/tmp/"+filename)  # Download
   
 # Dataset class
-class Dialect_dataset(torch.utils.data.Dataset):
+class Dialect_dataset(Dataset):
     def __init__(self, X, Y):
         super(Dialect_dataset).__init__()
         self.X = X
