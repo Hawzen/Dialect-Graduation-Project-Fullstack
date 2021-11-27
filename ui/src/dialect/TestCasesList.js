@@ -3,13 +3,14 @@ import TestCase from './TestCase'
 
 import { 
     ThemeProvider, 
+    List
 
  } from "@material-ui/core";
-import { rtlTheme } from './dialect';
+import { rtlTheme } from './ControlPanel';
 
 // Change test cases
 export default function TestCasesList({
-    testCases = ['السلام عليكم','وعليكم السلام','شحالكم','ازيك'],handleInputChange
+    testCases = ['السلام عليكم','خايب شنو السالفة','هلأ بحكي معك','عامل ايه'],handleInputChange
 }) {
     function onElementClick(text){
         handleInputChange(text)
