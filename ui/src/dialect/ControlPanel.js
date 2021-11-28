@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { React,useEffect, useState} from "react"; 
 import {  Grid, TextField,  ThemeProvider, createMuiTheme } from "@material-ui/core";
 import TestCasesList from "./TestCasesList";
@@ -11,18 +12,23 @@ export default function ControlPanel(props){
     let [textField, setTextField] = useState("");
 
     
-    const updatePreds = () => {
-        const message = JSON.stringify({text: textField});
-        fetch("/api/text", {
-            method: "POST", 
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'        
-            },
-            body: message 
-        })
-            .then(resp => resp.json())
-            .then(resp => setPreds(resp.prediction));
+    const updatePreds = () => {        
+         const message = JSON.stringify({text: textField});
+         
+
+
+$.ajax({
+          type: "POST",
+          url: "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-predict",
+          data: JSON.stringify({"text" : textField}),
+          success: function (response) {
+            setPreds(response)
+            console.log(response);
+          },
+          error: function (err) {
+            console.log(err);
+          },
+        });
     }
 
     useEffect(() => {
