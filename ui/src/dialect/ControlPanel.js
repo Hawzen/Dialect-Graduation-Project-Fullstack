@@ -1,7 +1,6 @@
 import $ from 'jquery'
 import { React,useEffect, useState} from "react"; 
 import {  Grid, TextField,  ThemeProvider, createMuiTheme } from "@material-ui/core";
-import TestCasesList from "./TestCasesList";
 import TabsTestCases from './TabsTestCases';
 const rtlTheme = createMuiTheme({direction: 'rtl', });
 export {rtlTheme}
@@ -47,32 +46,6 @@ if(textField.length!==0){
     
 
     return (
-        // <Grid container direction="column" justify="flex-end" alignItems="center" style={{padding: "5em", marginTop: "1em"}}>
-        // <Grid container spacing={0} alignItems="stretch" direction="column">
-
-        //     <Grid item>
-        //         <ThemeProvider theme={rtlTheme}>
-        //         <div dir="rtl">
-        //         <TextField
-        //             onChange={e => setTextField(e.target.value)}
-        //             value={textField}
-        //             label="Predict Region"
-        //             style={{width: "auto", display: "block"}}
-        //             placeholder="اهلا وسهلا"
-        //             helperText="Enter text in Arabic"
-        //             fullWidth
-        //             multiline
-        //             margin="normal"
-        //         />
-        //         </div>
-        //         </ThemeProvider>
-        //     </Grid>
-        //     <Grid item>
-        //         {/* <TestCasesList handleInputChange={handleInputChange} /> */}
-        //         {/* <TabsTestCases /> */}
-        //     </Grid>
-
-        // </Grid>
          <Grid container direction="column" justify="flex-end" alignItems="stretch" >
             {/* <Grid item style={{width: "80%", minWidth: "80%", marginBottom: "5em"}}>
                 <PercentageResults/>
@@ -95,7 +68,7 @@ if(textField.length!==0){
                 </ThemeProvider>
             </Grid>
             <Grid item>
-                <TabsTestCases />
+                <TabsTestCases handleInputChange={handleInputChange} />
             </Grid>
 
         </Grid>

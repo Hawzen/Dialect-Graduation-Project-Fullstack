@@ -10,7 +10,7 @@ import { rtlTheme } from './ControlPanel';
 
 // Change test cases
 export default function TestCasesList({
-    testCases = ['السلام عليكم','خايب شنو السالفة','هلأ بحكي معك','عامل ايه'],handleInputChange
+    testCases,handleInputChange
 }) {
     function onElementClick(text){
         handleInputChange(text)
