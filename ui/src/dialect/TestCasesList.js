@@ -20,7 +20,7 @@ export default function TestCasesList({
     return (
                 <ThemeProvider theme={rtlTheme}> 
                  <div dir="rtl">
-            <List  style={{color:"black"}}>
+            <List  style={{color:"black",width:'100%',maxHeight:300,overflow:'auto'}} >
             {testCases.map((testCase,i)=>(
                 <TestCase text={testCase} onElementClick={onElementClick}/>
             )

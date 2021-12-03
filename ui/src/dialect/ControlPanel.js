@@ -5,34 +5,21 @@ import TabsTestCases from './TabsTestCases';
 const rtlTheme = createMuiTheme({direction: 'rtl', });
 export {rtlTheme}
 
-
-export default function ControlPanel(props){
-    const setPreds = props.setPreds;
+export default function ControlPanel({setPreds,model}){
+    // const setPreds = props.setPreds;
 
     let [textField, setTextField] = useState("");
 
     
     const updatePreds = () => {        
-         const message = JSON.stringify({text: textField});
+        const message = JSON.stringify({text: textField});
          
+        if(textField.length!==0){
+            console.log(model)
+            if(model===0) fetchApi(model,textField,setPreds);
+            if(model === 1) fetchApi(model,textField,setPreds);
 
-
-if(textField.length!==0){
-
-    $.ajax({
-            type: "POST",
-            url: "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-predict",
-            data: JSON.stringify({"text" : textField}),
-            success: function (response) {
-                // setPreds(response)
-                console.log(response);
-            },
-            error: function (err) {
-                console.log(err);
-            },
-            });
         }
-
 }
 
     useEffect(() => {
@@ -50,7 +37,7 @@ if(textField.length!==0){
             {/* <Grid item style={{width: "80%", minWidth: "80%", marginBottom: "5em"}}>
                 <PercentageResults/>
             </Grid> */}
-            <Grid item>
+            <Grid item style={{marginBottom:'2rem'}}>
                 <ThemeProvider theme={rtlTheme}>
                 <div dir="rtl">
                 <TextField
@@ -73,4 +60,28 @@ if(textField.length!==0){
 
         </Grid>
     )
+}
+function fetchApi(modelNumber,text,setPreds){
+    const bertApi = "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-prediction-BERT"
+    const bayesApi = "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-prediction-naive-bayes"
+
+    const modelsArr = [bertApi,bayesApi]
+
+    $.ajax(
+        {
+            type: "POST",
+            url: modelsArr[modelNumber],
+            data: JSON.stringify({"text" : text}),
+            dataType:'json',
+            success: function (response) {
+
+        setPreds({GLF: response[1], EGY: response[0], IRQ: response[2], LEV: response[3], NOR: response[4]})
+            },
+            error: function (err) {
+                console.log(err);
+            },
+            });
+            
+
+
 }

@@ -1,5 +1,6 @@
 import { React,lazy, Suspense } from "react";
-import { useMediaQuery, useTheme,} from "@material-ui/core";
+import {Typography ,useMediaQuery, useTheme,MuiThemeProvider,createMuiTheme} from "@material-ui/core";
+
 
 const Plot = lazy(() => import("react-plotly.js"));
 
@@ -31,6 +32,7 @@ export default function GlobePlot(props){
     return (
         // SORRY FOR SHIT CODE
         <Suspense fallback={<div>Loading...</div>}>
+
             <Plot
                 data={[
                     {

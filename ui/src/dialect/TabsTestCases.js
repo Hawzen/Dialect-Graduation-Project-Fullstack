@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {Container, Box,Typography,AppBar,Tabs,Tab,useTheme,createMuiTheme, MuiThemeProvider} from "@material-ui/core";
+import {Paper, Box,Typography,AppBar,Tabs,Tab,useTheme,createMuiTheme, MuiThemeProvider} from "@material-ui/core";
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import TestCasesList from './TestCasesList'
@@ -10,8 +10,6 @@ theme = {
   overrides: {
     MuiTab: {
       root: {
-        // [theme.breakpoints.down("sm")]: {
-        // }
          minWidth: 0,
         '@media (min-width: 0px)': {
           minWidth: 0
@@ -47,10 +45,10 @@ export default function TabsTestCases({handleInputChange}) {
     // <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
     <MuiThemeProvider theme={theme}>
 
+     <Paper>
      <Box sx={{ width: '100%' }}>
        {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}></Box> */}
 
-     {/* <Box> */}
       {/* <AppBar position="static"> */}
         <Tabs
           value={value}
@@ -99,6 +97,7 @@ export default function TabsTestCases({handleInputChange}) {
 
       </SwipeableViews>
     </Box>
+    </Paper>
     </MuiThemeProvider>
   );
 }
