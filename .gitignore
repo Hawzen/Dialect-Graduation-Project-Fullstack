@@ -66,3 +66,4 @@ api/dialect_service/Untitled.ipynb
 node_modules
 api/chatbot/GloVe/*
 api/chatbot/chatter.pkl
+ui/build/
