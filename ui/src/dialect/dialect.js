@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { 
     Grid, 
     StylesProvider, 
@@ -15,9 +16,37 @@ import ModelsTabs from "./ModelsTabs";
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
+
 export default function Dialect(){
     let [preds, setPreds] = useState({GLF: 0, EGY: 0, IRQ: 0, LEV: 0, NOR: 0})
     let [model,setModel] = useState(0);
+    let [text,setText] = useState("");
+
+    const fetchApi = (n) =>{
+        setModel(n);
+        if(text.length===0) return
+
+        const bertApi = "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-prediction-BERT"
+        const bayesApi = "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-prediction-naive-bayes"
+
+        const modelsArr = [bertApi,bayesApi]
+
+        $.ajax(
+            {
+                type: "POST",
+                url: modelsArr[n],
+                data: JSON.stringify({"text" : text}),
+                dataType:'json',
+                success: function (response) {
+
+            setPreds({GLF: response[1], EGY: response[0], IRQ: response[2], LEV: response[3], NOR: response[4]})
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+                });
+        }
+
     return (
 
           <StylesProvider jss={jss}>
@@ -32,14 +61,14 @@ export default function Dialect(){
                 <Paragraphs/>
             </Grid>
             <Grid item>
-                <ModelsTabs setModel={setModel} />
+                <ModelsTabs setModel={setModel} fetchApi={fetchApi} />
             </Grid>
             
             <Grid item style={{margin: "auto", marginTop: "0.9rem"}}>
                 <GlobePlot preds={preds}/>
             </Grid>
             <Grid item>
-                <ControlPanel setPreds={setPreds} model={model} />
+                <ControlPanel model={model} text={text} fetchApi={fetchApi} setText={setText} />
             </Grid>
 
 

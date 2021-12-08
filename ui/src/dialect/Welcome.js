@@ -9,8 +9,10 @@ const theme = createMuiTheme({
         'roboto',
         'sans-serif'
         ].join(','),
-    },
-        h5:{
+         '@media (max-width:600px)': {
+    fontSize: '3.3rem',
+  },
+    },         h5:{
         fontFamily: [
 
             'Merriweather'
