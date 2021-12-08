@@ -12,6 +12,9 @@ const theme = createMuiTheme({
          '@media (max-width:600px)': {
     fontSize: '3.3rem',
   },
+         '@media (max-width:500px)': {
+    fontSize: '2.3rem',
+  },
     },         h5:{
         fontFamily: [
 
