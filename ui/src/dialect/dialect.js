@@ -21,6 +21,8 @@ export default function Dialect(){
     let [preds, setPreds] = useState({GLF: 0, EGY: 0, IRQ: 0, LEV: 0, NOR: 0})
     let [model,setModel] = useState(0);
     let [text,setText] = useState("");
+    const [success, setSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const fetchApi = (n) =>{
         setModel(n);
@@ -38,9 +40,10 @@ export default function Dialect(){
                 data: JSON.stringify({"text" : text}),
                 dataType:'json',
                 success: function (response) {
-
-            setPreds({GLF: response[1], EGY: response[0], IRQ: response[2], LEV: response[3], NOR: response[4]})
-                },
+                    setSuccess(true);
+                    setLoading(false);
+                    setPreds({GLF: response[1], EGY: response[0], IRQ: response[2], LEV: response[3], NOR: response[4]})
+                    },
                 error: function (err) {
                     console.log(err);
                 },
@@ -68,7 +71,7 @@ export default function Dialect(){
                 <GlobePlot preds={preds}/>
             </Grid>
             <Grid item>
-                <ControlPanel model={model} text={text} fetchApi={fetchApi} setText={setText} />
+                <ControlPanel model={model} text={text} success={success} loading={loading} fetchApi={fetchApi} setText={setText} setSuccess={setSuccess} setLoading={setLoading} />
             </Grid>
 
 

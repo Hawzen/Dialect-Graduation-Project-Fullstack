@@ -1,34 +1,78 @@
 import $ from 'jquery'
 import { React,useEffect, useState} from "react"; 
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 import { Container, Button,Grid, TextField,  ThemeProvider, createMuiTheme } from "@material-ui/core";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { green } from '@material-ui/core/colors';
 import TabsTestCases from './TabsTestCases';
 const rtlTheme = createMuiTheme({direction: 'rtl', });
 export {rtlTheme}
 
-export default function ControlPanel({text,model,setText,fetchApi}){
-    
-    // let [textField, setTextField] = useState("");
-    
-    const updatePreds = () => {        
-            fetchApi(model);
 
-}
+const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      alignItems: 'center',
+    },
+    wrapper: {
+      margin: theme.spacing(1),
+      position: 'relative',
+    },
+    buttonSuccess: {
+      backgroundColor: green[500],
+      '&:hover': {
+        backgroundColor: green[700],
+      },
+    },
+    // fabProgress: {
+    //   color: green[500],
+    //   position: 'absolute',
+    //   top: -6,
+    //   left: -6,
+    //   zIndex: 1,
+    // },
+    buttonProgress: {
+      color: green[500],
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      marginTop: -12,
+      marginLeft: -12,
+    },
+  }));
 
-    useEffect(() => {
-        const timeoutId = setTimeout(updatePreds, 1000);
-        return () => clearTimeout(timeoutId);
-      }, [text]);
+export default function ControlPanel({text,model,success,loading,setText,fetchApi,setSuccess,setLoading}){
+    
+    
+    //style
+    const classes = useStyles()
+    const buttonClassname = clsx({
+        [classes.buttonSuccess]: success,
+      });
+      
+
+    // useEffect(() => {
+    //     const timeoutId = setTimeout(updatePreds, 1000);
+    //     return () => clearTimeout(timeoutId);
+    //   }, [text]);
     
     const handleInputChange = (text)=>{
         setText(text)
     }
+    const handleButtonClick = () => {
+            if (!loading) {
+              setSuccess(false);
+              setLoading(true);
+              fetchApi(model);
+             
+            }
+          };
     
 
     return (
          <Grid container direction="column" justify="flex-end" alignItems="stretch" >
-            {/* <Grid item style={{width: "80%", minWidth: "80%", marginBottom: "5em"}}>
-                <PercentageResults/>
-            </Grid> */}
+
             <Grid item style={{marginBottom:'2rem'}}  >
                 <ThemeProvider theme={rtlTheme}>
                 <div dir="rtl">
@@ -43,15 +87,13 @@ export default function ControlPanel({text,model,setText,fetchApi}){
                     multiline
                     margin="normal"
                 />
-                <Container centered style={{margin:"auto"}}>
-{/* 
-
-                   <Button
-        variant="contained"
-        color="primary"
-      >
-          Send
-      </Button> */}
+                <Container className={classes.root}>
+                <div className={classes.wrapper}>
+                   <Button onClick={handleButtonClick}  variant="contained" disabled={loading}  color="primary" className={buttonClassname}>
+                     Send
+                    </Button>
+                    {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+                </div>
                 </Container>
                 </div>
                 </ThemeProvider>
