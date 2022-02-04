@@ -43,24 +43,19 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function ControlPanel({text,model,success,loading,setText,fetchApi,setSuccess,setLoading}){
-    
-    
+
     //style
     const classes = useStyles()
     const buttonClassname = clsx({
         [classes.buttonSuccess]: success,
       });
-      
 
-    // useEffect(() => {
-    //     const timeoutId = setTimeout(updatePreds, 1000);
-    //     return () => clearTimeout(timeoutId);
-    //   }, [text]);
-    
     const handleInputChange = (text)=>{
         setText(text)
     }
+
     const handleButtonClick = () => {
+      if(text.length === 0) return
             if (!loading) {
               setSuccess(false);
               setLoading(true);
@@ -68,12 +63,24 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
              
             }
           };
-    
 
+    const handleClickEvent = (e)=>{
+           if(e.code === "Enter" || e.code === "NumpadEnter"){
+             handleButtonClick();
+             e.preventDefault();
+    }
+  }
+    useEffect(() => {
+      window.addEventListener("keydown",handleClickEvent);
+      return () => { 
+        window.removeEventListener('keydown', handleClickEvent);
+      };
+  }, [handleClickEvent]);
+      
     return (
          <Grid container direction="column" justify="flex-end" alignItems="stretch" >
 
-            <Grid item style={{marginBottom:'2rem'}}  >
+            <Grid item >
                 <ThemeProvider theme={rtlTheme}>
                 <div dir="rtl">
                 <TextField
@@ -84,9 +91,13 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
                     placeholder="اهلا وسهلا"
                     helperText="Enter text in Arabic"
                     fullWidth
-                    multiline
                     margin="normal"
                 />
+                </div>
+                </ThemeProvider>
+            </Grid>
+
+            <Grid item style={{marginBottom:'1rem'}}  >
                 <Container className={classes.root}>
                 <div className={classes.wrapper}>
                    <Button onClick={handleButtonClick}  variant="contained" disabled={loading}  color="primary" className={buttonClassname}>
@@ -95,9 +106,8 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
                     {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
                 </div>
                 </Container>
-                </div>
-                </ThemeProvider>
             </Grid>
+
             <Grid item>
                 <TabsTestCases handleInputChange={handleInputChange} />
             </Grid>
