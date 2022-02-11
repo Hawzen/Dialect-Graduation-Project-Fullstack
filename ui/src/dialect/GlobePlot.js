@@ -1,5 +1,5 @@
 import { React,lazy, Suspense } from "react";
-import {Typography ,useMediaQuery, useTheme,MuiThemeProvider,createMuiTheme} from "@material-ui/core";
+import {useMediaQuery, useTheme} from "@material-ui/core";
 
 
 const Plot = lazy(() => import("react-plotly.js"));

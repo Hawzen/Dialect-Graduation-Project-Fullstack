@@ -1,5 +1,4 @@
-import $ from 'jquery'
-import { React,useEffect, useState} from "react"; 
+import { React,useEffect} from "react"; 
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Button,Grid, TextField,  ThemeProvider, createMuiTheme } from "@material-ui/core";
@@ -97,8 +96,8 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
                 </ThemeProvider>
             </Grid>
 
-            <Grid item style={{marginBottom:'1rem'}}  >
-                <Container className={classes.root}>
+            <Grid item style={{marginBottom:'1rem',display:'flex',justifyContent:"center"}}  >
+                <Container className={classes.root} style={{justifyContent:"flex-end"}}>
                 <div className={classes.wrapper}>
                    <Button onClick={handleButtonClick}  variant="contained" disabled={loading}  color="primary" className={buttonClassname}>
                      Send

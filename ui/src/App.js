@@ -1,11 +1,10 @@
-import React, { useState, lazy, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { 
   ThemeProvider, 
 } from '@material-ui/core';
 import { createMuiTheme } from '@material-ui/core/styles';
-import TestCasesList from "./dialect/TestCasesList";
 
 
 const Dialect = lazy(() => import("./dialect/dialect"));

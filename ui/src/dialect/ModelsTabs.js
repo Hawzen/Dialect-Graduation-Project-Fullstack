@@ -29,9 +29,9 @@ export default function ModelsTabs({setModel,fetchApi}) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
-  const handleClick = (n)=> {
+  // const handleClick = (n)=> {
 
-  }
+  // }
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
