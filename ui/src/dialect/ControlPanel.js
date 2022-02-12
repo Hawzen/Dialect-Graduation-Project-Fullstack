@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       alignItems: 'center',
     },
+    
     wrapper: {
       margin: theme.spacing(1),
       position: 'relative',
@@ -99,7 +100,7 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
             <Grid item style={{marginBottom:'1rem',display:'flex',justifyContent:"center"}}  >
                 <Container className={classes.root} style={{justifyContent:"flex-end"}}>
                 <div className={classes.wrapper}>
-                   <Button onClick={handleButtonClick}  variant="contained" disabled={loading}  color="primary" className={buttonClassname}>
+                   <Button onClick={handleButtonClick} variant="contained" color="primary" disabled={loading}  className={buttonClassname}>
                      Send
                     </Button>
                     {loading && <CircularProgress size={24} className={classes.buttonProgress} />}

@@ -1,8 +1,11 @@
 import React, { lazy, Suspense } from "react";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { blue } from '@material-ui/core/colors';
+
 import { 
   ThemeProvider, 
+  
 } from '@material-ui/core';
 import { createMuiTheme } from '@material-ui/core/styles';
 
@@ -30,7 +33,7 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       light: '#4C566A',
-      main: '#434C5E',
+      main: blue[800],
       dark: '#2E3440',
     },
     secondary: {

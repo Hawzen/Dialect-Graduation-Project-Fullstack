@@ -12,7 +12,7 @@ export default function TestCase({text,onElementClick}) {
 
           <ListItem button onClick={handleClick}>
             <ListItemButton>
-                <ListItemText >
+                <ListItemText style={{fontSize:"1.4rem", color:"#616161"}}>
                     {text}
                 </ListItemText>
             </ListItemButton>
