@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Paper,Tab,Tabs,makeStyles,createMuiTheme,MuiThemeProvider,Typography} from '@material-ui/core'
+import {Paper,Tab,Tabs,makeStyles,createMuiTheme,MuiThemeProvider} from '@material-ui/core'
 
 const theme = createMuiTheme({
   typography: {
@@ -43,9 +43,6 @@ export default function ModelsTabs({setModel,fetchApi}) {
   return (
     <MuiThemeProvider theme={theme}>
 
-            <Typography variant="h4" align="center" gutterBottom color="textPrimary" style={{marginTop: '60px'}}>
-                LIVE DEMO
-                </Typography> 
     <div className={classes.root}>
        <Paper square>
       <Tabs

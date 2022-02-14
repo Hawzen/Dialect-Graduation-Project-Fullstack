@@ -3,7 +3,8 @@ import {
     Grid, 
     StylesProvider, 
     jssPreset, 
-    Container
+    Container,
+    Typography
  } from "@material-ui/core";
 import { create } from 'jss';
 import rtl from 'jss-rtl';
@@ -13,6 +14,7 @@ import GlobePlot from "./GlobePlot";
 import ControlPanel from "./ControlPanel";
 import Paragraphs from "./Paragraphs";
 import ModelsTabs from "./ModelsTabs";
+
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
@@ -42,6 +44,7 @@ export default function Dialect(){
                 success: function (response) {
                     setSuccess(true);
                     setLoading(false);
+                    // In backend: `id2label = {0 : "EGY", 1 : "GLF", 2 : "IRQ", 3 : "LEV", 4 : "NOR"}`
                     setPreds({GLF: response[1], EGY: response[0], IRQ: response[2], LEV: response[3], NOR: response[4]})
                     },
                 error: function (err) {
@@ -63,15 +66,26 @@ export default function Dialect(){
             <Grid Item>
                 <Paragraphs/>
             </Grid>
-            <Grid item>
-                <ModelsTabs setModel={setModel} fetchApi={fetchApi} />
-            </Grid>
+            
+            <Typography variant="h4" align="center" gutterBottom color="textPrimary" style={{marginTop: '60px'}}>
+                LIVE DEMO
+            </Typography> 
             
             <Grid item style={{margin: "auto", marginTop: "0.9rem"}}>
                 <GlobePlot preds={preds}/>
             </Grid>
+            
             <Grid item>
-                <ControlPanel model={model} text={text} success={success} loading={loading} fetchApi={fetchApi} setText={setText} setSuccess={setSuccess} setLoading={setLoading} />
+                <ControlPanel model={model} 
+                text={text} 
+                success={success} 
+                loading={loading} 
+                fetchApi={fetchApi} 
+                setText={setText} 
+                setSuccess={setSuccess} 
+                setLoading={setLoading} 
+                modelTabs={<ModelsTabs setModel={setModel} fetchApi={fetchApi} />}
+            />
             </Grid>
 
 
@@ -81,3 +95,4 @@ export default function Dialect(){
 
     )
 }
+

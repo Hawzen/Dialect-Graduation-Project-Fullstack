@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function ControlPanel({text,model,success,loading,setText,fetchApi,setSuccess,setLoading}){
+export default function ControlPanel({text,model,success,loading,setText,fetchApi,setSuccess,setLoading, modelTabs}){
 
     //style
     const classes = useStyles()
@@ -96,9 +96,9 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
                 </div>
                 </ThemeProvider>
             </Grid>
-
-            <Grid item style={{marginBottom:'1rem',display:'flex',justifyContent:"center"}}  >
-                <Container className={classes.root} style={{justifyContent:"flex-end"}}>
+            {modelTabs}
+            <Grid item style={{marginBottom:'1rem',display:'flex',justifyContent:"space-between"}}  >
+                <Container className={classes.root} style={{justifyContent:"center"}}>
                 <div className={classes.wrapper}>
                    <Button onClick={handleButtonClick} variant="contained" color="primary" disabled={loading}  className={buttonClassname}>
                      Send
