@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from flask import escape , jsonify, Response
+from flask import escape , json, Response
 import numpy as np
 import pandas as pd
 import requests
@@ -44,7 +44,7 @@ def tokenize(batch):
     """
     model_name = "aubmindlab/bert-base-arabertv2"
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    sequence_length = 128
+    sequence_length = 32
 
     return tokenizer.batch_encode_plus(
         batch,
@@ -68,13 +68,13 @@ def predict_dialect(request):
     data = request.get_json(force=True)
     dialect_text = data["text"]
     model_name = "aubmindlab/bert-base-arabertv2"
-    #arabert_prep = ArabertPreprocessor(model_name)
+    arabert_prep = ArabertPreprocessor(model_name)
     id2label = {0 : "EGY", 1 : "GLF", 2 : "IRQ", 3 : "LEV", 4 : "NOR"}
     training_args = TrainingArguments("/tmp/dump")
     training_args.save_strategy = "no"
 
     df = pd.DataFrame({"Text" : [dialect_text]})
-    #df["Text"] = df["Text"].apply(arabert_prep.preprocess)
+    df["Text"] = df["Text"].apply(arabert_prep.preprocess)
     df_encoding = tokenize(df["Text"].to_list())
     
     prediction_input = Dialect_dataset(df_encoding, [1])
@@ -82,11 +82,12 @@ def predict_dialect(request):
     model = AutoModelForSequenceClassification.from_pretrained("/tmp")
     trainer = Trainer(model=model,args=training_args)
     
-    prediction = trainer.predict(prediction_input)
-    label_id = np.argmax(prediction[0])
-    dialect_class = id2label[label_id]
+    prediction = trainer.predict(prediction_input)[0][0]
+    prediction = json.dumps(prediction.tolist())
+    #label_id = np.argmax(prediction[0])
+    #dialect_class = id2label[label_id]
     
-    res = Response(response=str(dialect_class))
+    res = Response(response=prediction)
     # Allows GET requests from any origin with the Content-Type
     res.headers['Access-Control-Allow-Origin'] = '*'
     res.headers['Access-Control-Allow-Methods'] = 'POST'
