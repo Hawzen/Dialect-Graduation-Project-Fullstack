@@ -44,7 +44,7 @@ def tokenize(batch):
     """
     model_name = "aubmindlab/bert-base-arabertv2"
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    sequence_length = 128
+    sequence_length = 32
 
     return tokenizer.batch_encode_plus(
         batch,
