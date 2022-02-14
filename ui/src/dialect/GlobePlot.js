@@ -47,7 +47,7 @@ export default function GlobePlot(props){
                         preds.IRQ,
                         preds.LEV, preds.LEV, preds.LEV,
                         preds.NOR, preds.NOR, preds.NOR, preds.NOR],
-                    text: "SA",
+                    text: "Probability",
                     zmax: 1,
                     zmin: 0,
                     colorscale: "Reds",
