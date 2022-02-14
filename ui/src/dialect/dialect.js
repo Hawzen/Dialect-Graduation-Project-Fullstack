@@ -8,7 +8,7 @@ import {
  } from "@material-ui/core";
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Welcome from "./Welcome";
 import GlobePlot from "./GlobePlot";
 import ControlPanel from "./ControlPanel";
@@ -27,15 +27,15 @@ export default function Dialect(){
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    
+    const bertApi = "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-prediction-BERT"
+    const bayesApi = "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-prediction-naive-bayes"
+
     const fetchApi = (n) =>{
         setModel(n);
         if(text.length===0) return
 
-        const bertApi = "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-prediction-BERT"
-        const bayesApi = "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-prediction-naive-bayes"
-
         const modelsArr = [bertApi,bayesApi]
-
         $.ajax(
             {
                 type: "POST",
@@ -51,8 +51,25 @@ export default function Dialect(){
                 error: function (err) {
                     console.log(err);
                 },
-                });
-        }
+            });
+    }
+
+    useEffect(() => { // Wake up BERT
+        let n = 0;
+        setModel(n);
+
+        const modelsArr = [bertApi]
+        $.ajax(
+            {
+                type: "POST",
+                url: modelsArr[n],
+                data: JSON.stringify({"text" : "..You're still half-asleep, aren't you?"}),
+                dataType:'json',
+                error: function (err) {
+                    console.log(err);
+                },
+            });
+    }, [])
 
     return (
 
@@ -64,7 +81,7 @@ export default function Dialect(){
             <Grid Item>
                 <Welcome/>
             </Grid>
-            
+
             <Grid Item>
                 <Paragraphs/>
             </Grid>
