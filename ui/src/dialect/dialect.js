@@ -64,6 +64,7 @@ export default function Dialect(){
             <Grid Item>
                 <Welcome/>
             </Grid>
+            
             <Grid Item>
                 <Paragraphs/>
             </Grid>
