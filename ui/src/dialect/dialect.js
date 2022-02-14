@@ -14,6 +14,7 @@ import GlobePlot from "./GlobePlot";
 import ControlPanel from "./ControlPanel";
 import Paragraphs from "./Paragraphs";
 import ModelsTabs from "./ModelsTabs";
+import Credits from "./Credits"
 
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -87,6 +88,12 @@ export default function Dialect(){
                 modelTabs={<ModelsTabs setModel={setModel} fetchApi={fetchApi} />}
             />
             </Grid>
+
+            <Grid item>
+                <Credits/>
+            </Grid>
+
+            <div style={{padding: "2em"}}/> {/* Footer */}
 
 
         </Grid>
