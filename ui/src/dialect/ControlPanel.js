@@ -101,7 +101,7 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
                 <Container className={classes.root} style={{justifyContent:"center"}}>
                 <div className={classes.wrapper}>
                    <Button onClick={handleButtonClick} variant="contained" color="primary" disabled={loading}  className={buttonClassname}>
-                     Send
+                     Classify
                     </Button>
                     {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
                 </div>
