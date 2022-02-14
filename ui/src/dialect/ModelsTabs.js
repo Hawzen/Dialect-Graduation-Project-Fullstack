@@ -36,7 +36,7 @@ export default function ModelsTabs({setModel,fetchApi}) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
     // setModel(newValue);
-    fetchApi(newValue);
+    // fetchApi(newValue);
 
   };
 
