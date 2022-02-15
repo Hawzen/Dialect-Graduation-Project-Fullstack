@@ -28,7 +28,7 @@ export default function Dialect(){
     const [loading, setLoading] = useState(false);
 
     
-    const bertApi = "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-prediction-BERT"
+    const bertApi = "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-prediction-BERT-V2"
     const bayesApi = "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-prediction-naive-bayes"
 
     const fetchApi = (n) =>{
