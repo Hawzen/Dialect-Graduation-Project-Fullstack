@@ -1,4 +1,4 @@
-import { React,useEffect} from "react"; 
+import { React,useEffect, useState} from "react"; 
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Button,Grid, TextField,  ThemeProvider, createMuiTheme } from "@material-ui/core";
@@ -46,6 +46,8 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
 
     //style
     const classes = useStyles()
+    const [helperText,setHelperText] = useState("Enter text in Arabic");
+    const [inputError,setInputError] = useState(false);
     const buttonClassname = clsx({
         [classes.buttonSuccess]: success,
       });
@@ -53,16 +55,35 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
     const handleInputChange = (text)=>{
         setText(text)
     }
+    const checkInputLength = ()=>{
+
+      if(inputError === true && text.length <=100){
+        setHelperText("Enter text in Arabic")
+        setInputError(false);
+        return true;
+      }
+
+      if(text.length===0) return false;
+      if(text.length >= 100){
+        setHelperText("Text must be under 100 characters")
+        setInputError(true);
+        return false;
+      }
+
+      return true;
+    }
 
     const handleButtonClick = () => {
-      if(text.length === 0) return
-            if (!loading) {
-              setSuccess(false);
-              setLoading(true);
-              fetchApi(model);
-             
-            }
-          };
+      if(!checkInputLength()){
+        return;
+      }
+          if (!loading) {
+            setSuccess(false);
+            setLoading(true);
+            fetchApi(model);
+            
+          }
+        };
 
     const handleClickEvent = (e)=>{
            if(e.code === "Enter" || e.code === "NumpadEnter"){
@@ -76,6 +97,11 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
         window.removeEventListener('keydown', handleClickEvent);
       };
   }, [handleClickEvent]);
+
+    useEffect(() => {
+        const timeoutId = setTimeout(checkInputLength, 1000);
+        return () => clearTimeout(timeoutId);
+      }, [text]);
       
     return (
          <Grid container direction="column" justify="flex-end" alignItems="stretch" >
@@ -84,18 +110,20 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
                 <ThemeProvider theme={rtlTheme}>
                 <div dir="rtl">
                 <TextField
-                    onChange={e => setText(e.target.value)}
+                    onChange={(e)=>{setText(e.target.value)}}
                     value={text}
                     label="Predict Region"
                     style={{width: "auto", display: "block"}}
                     placeholder="اهلا وسهلا"
-                    helperText="Enter text in Arabic"
+                    helperText={helperText}
                     fullWidth
                     margin="normal"
+                    error={inputError}
                 />
                 </div>
                 </ThemeProvider>
             </Grid>
+
             {modelTabs}
             <Grid item style={{marginBottom:'1rem',display:'flex',justifyContent:"space-between"}}  >
                 <Container className={classes.root} style={{justifyContent:"center"}}>
