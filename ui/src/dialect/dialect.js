@@ -22,7 +22,7 @@ const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 export default function Dialect(){
     let [preds, setPreds] = useState({GLF: 0, EGY: 0, IRQ: 0, LEV: 0, NOR: 0})
-    let [model,setModel] = useState(0);
+    let [model,setModel] = useState(1);
     let [text,setText] = useState("");
     let [retryCount, setRetryCount] = useState(0);
     const [success, setSuccess] = useState(false);
@@ -62,22 +62,22 @@ export default function Dialect(){
             });
     }
 
-    useEffect(() => { // Wake up BERT
-        let n = 0;
-        setModel(n);
+    // useEffect(() => { // Wake up BERT
+    //     let n = 0;
+    //     setModel(n);
 
-        const modelsArr = [bertApi]
-        $.ajax(
-            {
-                type: "POST",
-                url: modelsArr[n],
-                data: JSON.stringify({"text" : "..You're still half-asleep, aren't you?"}),
-                dataType:'json',
-                error: function (err) {
-                    console.log(err);
-                },
-            });
-    }, [])
+    //     const modelsArr = [bertApi]
+    //     $.ajax(
+    //         {
+    //             type: "POST",
+    //             url: modelsArr[n],
+    //             data: JSON.stringify({"text" : "..You're still half-asleep, aren't you?"}),
+    //             dataType:'json',
+    //             error: function (err) {
+    //                 console.log(err);
+    //             },
+    //         });
+    // }, [])
 
     return (
 

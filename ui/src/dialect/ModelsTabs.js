@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ModelsTabs({setModel,fetchApi}) {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1);
 
   // const handleClick = (n)=> {
 
