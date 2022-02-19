@@ -24,9 +24,11 @@ export default function Dialect(){
     let [preds, setPreds] = useState({GLF: 0, EGY: 0, IRQ: 0, LEV: 0, NOR: 0})
     let [model,setModel] = useState(0);
     let [text,setText] = useState("");
+    let [retryCount, setRetryCount] = useState(0);
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    const maxRetryCount = 10;
     
     const bertApi = "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-prediction-BERT-V2"
     const bayesApi = "https://us-central1-dialect-project-328413.cloudfunctions.net/dialect-prediction-naive-bayes"
@@ -50,6 +52,12 @@ export default function Dialect(){
                     },
                 error: function (err) {
                     console.log(err);
+                    if(retryCount < maxRetryCount){
+                        setRetryCount(retryCount + 1);
+                        return fetchApi(n);
+                    }
+                    else
+                        window.location.reload();
                 },
             });
     }
