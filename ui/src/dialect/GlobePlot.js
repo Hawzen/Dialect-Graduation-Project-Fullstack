@@ -38,19 +38,26 @@ export default function GlobePlot(props){
                     {
                     type: 'choropleth',
                     locations: ["EGY", // Egypt
-                                "SAU", "KWT", "QAT", "ARE", "BHR", "OMN", // GLF
+                                "SAU", "KWT", "QAT", "ARE", "BHR", // GLF
                                 "IRQ", // IRQ
                                 "SYR", "PSE", "JOR", // LEV
                                 "MAR", "DZA", "LBY", "TUN"], // NOR
                     z: [preds.EGY, 
-                        preds.GLF, preds.GLF, preds.GLF, preds.GLF, preds.GLF, preds.GLF,
+                        preds.GLF, preds.GLF, preds.GLF, preds.GLF, preds.GLF, 
                         preds.IRQ,
                         preds.LEV, preds.LEV, preds.LEV,
                         preds.NOR, preds.NOR, preds.NOR, preds.NOR],
                     text: "Probability",
+                    hovertext: 
+                        ["Probability EGY", // Egypt
+                        "Probability GLF", "Probability GLF", "Probability GLF", "Probability GLF", "Probability GLF", // GLF
+                        "Probability IRQ", // IRQ
+                        "Probability LEV", "Probability LEV", "Probability LEV", // LEV
+                        "Probability NOR", "Probability NOR", "Probability NOR", "Probability NOR"], // NOR,
+                    name: "Classification probability",
                     zmax: 1,
                     zmin: 0,
-                    colorscale: "Reds",
+                    // colorscale: "default",
                     showscale: false,
                     }
                 ]}
