@@ -1,7 +1,7 @@
 import { React,useEffect, useState} from "react"; 
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Button,Grid, TextField,  ThemeProvider, createMuiTheme } from "@material-ui/core";
+import { Container, Button,Grid, TextField,  ThemeProvider, createMuiTheme, Radio, FormControlLabel, FormControl, FormLabel, RadioGroup, Typography } from "@material-ui/core";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { green } from '@material-ui/core/colors';
 import TabsTestCases from './TabsTestCases';
@@ -105,7 +105,10 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
       
     return (
          <Grid container direction="column" justify="flex-end" alignItems="stretch" >
-
+            <Grid item>
+              <FormControlLabelPlacement/>
+            </Grid>
+            
             <Grid item >
                 <ThemeProvider theme={rtlTheme}>
                 <div dir="rtl">
@@ -142,4 +145,36 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
 
         </Grid>
     )
+}
+
+function ValidationPrompt(){
+
+}
+
+function FormControlLabelPlacement() {
+  const labels = ["EGY", "GLF", "IRQ", "LEV", "NOR"]
+
+  return (
+    <FormControl variant="filled">
+      <FormLabel id="validation-form-buttons">Actual dialect</FormLabel>
+      <RadioGroup
+        row
+        aria-labelledby="demo-form-control-label-placement"
+        name="actual_dialect"
+        // defaultValue="top"
+        color="primary"
+      >
+        {
+          labels.map(label => (
+          <FormControlLabel
+            value={label}
+            control={<Radio/>}
+            label={<h5 style={{color: "grey"}}>{label}</h5>}
+            key={label}
+          />
+          ))
+        }
+      </RadioGroup>
+    </FormControl>
+  );
 }
