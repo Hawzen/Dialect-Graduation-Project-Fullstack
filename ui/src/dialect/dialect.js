@@ -107,8 +107,10 @@ export default function Dialect(){
                 text={text} 
                 success={success} 
                 loading={loading} 
+                preds={preds}
                 fetchApi={fetchApi} 
                 setText={setText} 
+    
                 setSuccess={setSuccess} 
                 setLoading={setLoading} 
                 modelTabs={<ModelsTabs setModel={setModel} fetchApi={fetchApi} />}

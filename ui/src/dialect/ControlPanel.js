@@ -5,6 +5,7 @@ import { Container, Button,Grid, TextField,  ThemeProvider, createMuiTheme, Radi
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { green } from '@material-ui/core/colors';
 import TabsTestCases from './TabsTestCases';
+import Feedback from './Feedback'
 const rtlTheme = createMuiTheme({direction: 'rtl', });
 export {rtlTheme}
 
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function ControlPanel({text,model,success,loading,setText,fetchApi,setSuccess,setLoading, modelTabs}){
+export default function ControlPanel({text,model,success,preds,loading,setText,fetchApi,setSuccess,setLoading, modelTabs}){
 
     //style
     const classes = useStyles()
@@ -105,9 +106,9 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
       
     return (
          <Grid container direction="column" justify="flex-end" alignItems="stretch" >
-            <Grid item>
+            {/* <Grid item>
               <FormControlLabelPlacement/>
-            </Grid>
+            </Grid> */}
             
             <Grid item >
                 <ThemeProvider theme={rtlTheme}>
@@ -126,7 +127,9 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
                 </div>
                 </ThemeProvider>
             </Grid>
-
+            
+              <Feedback text={text} preds={preds} success={success}/>
+           
             {modelTabs}
             <Grid item style={{marginBottom:'1rem',display:'flex',justifyContent:"space-between"}}  >
                 <Container className={classes.root} style={{justifyContent:"center"}}>
@@ -142,7 +145,7 @@ export default function ControlPanel({text,model,success,loading,setText,fetchAp
             <Grid item>
                 <TabsTestCases handleInputChange={handleInputChange} />
             </Grid>
-
+           
         </Grid>
     )
 }
