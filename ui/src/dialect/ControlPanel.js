@@ -127,9 +127,9 @@ export default function ControlPanel({text,model,success,preds,loading,setText,f
                 </div>
                 </ThemeProvider>
             </Grid>
-            
-              <Feedback text={text} preds={preds} success={success}/>
-           
+               
+              {success && <Feedback text={text} preds={preds} success={success}/> }
+               
             {modelTabs}
             <Grid item style={{marginBottom:'1rem',display:'flex',justifyContent:"space-between"}}  >
                 <Container className={classes.root} style={{justifyContent:"center"}}>

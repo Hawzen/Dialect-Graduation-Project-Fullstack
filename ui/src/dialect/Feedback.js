@@ -45,7 +45,8 @@ export default function Feedback({text,preds,success}) {
                 dataType:'json',
                 
                 },
-            )};
+            )
+        };
     
 
     
