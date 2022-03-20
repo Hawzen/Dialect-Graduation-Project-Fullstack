@@ -46,6 +46,7 @@ export default function Feedback({text,preds,success}) {
                 
                 },
             )
+         setAnswer(1);   
         };
     
 
@@ -84,6 +85,7 @@ export default function Feedback({text,preds,success}) {
         <Button onClick={()=>postFeedback('IRQ')}>IRQ</Button>
         <Button onClick={()=>postFeedback('LEV')}>LEV</Button>
         <Button onClick={()=>postFeedback('NOR')}>NOR</Button>
+        
 
       </ButtonGroup>
       </Grid>
