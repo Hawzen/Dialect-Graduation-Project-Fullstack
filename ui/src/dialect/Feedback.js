@@ -97,7 +97,7 @@ export default function Feedback({text,preds,success}) {
 
     return(
         <MuiThemeProvider theme={theme}>
-            <Grid container justifyContent="center" alight="center">
+            <Grid container justifyContent="center" alignItems="center">
                 {output}
             </Grid> 
         </MuiThemeProvider> 
