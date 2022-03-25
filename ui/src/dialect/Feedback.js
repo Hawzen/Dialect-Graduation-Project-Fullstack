@@ -53,50 +53,54 @@ export default function Feedback({text,preds,success}) {
     
     const [answer,setAnswer] = useState(0);
     let output;
-    if(answer=== 0)output=
-        <Fragment>
-        <Grid item >
-        <Typography color="textPrimary"  variant='h6' style={{marginLeft:"1rem"}}>
-            Is the prediction correct?
-        </Typography></Grid>
-        <Grid item >
-        <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group" style={{marginLeft:'3rem'}}>
-        <Button onClick={()=>{setAnswer(1); console.log(answer)}}>Yes</Button>
-        <Button onClick={()=>{setAnswer(2); console.log(answer)}}>No</Button>
-      </ButtonGroup>
-      </Grid>
-      </Fragment>
-    else if(answer ===1) output=
-        <Grid item >
-        <Typography color="textPrimary"  variant='h6' style={{marginLeft:"1rem"}}>
-            Thank you for the feedback!
-        </Typography></Grid>
+    if(answer === 0)
+        output =
+            <Fragment>
+                <Grid item >
+                    <Typography color="textPrimary"  variant='h6' style={{marginLeft:"1rem"}}>
+                        Is the prediction correct?
+                    </Typography></Grid>
+                    <Grid item >
+                    <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group" style={{marginLeft:'3rem'}}>
+                        <Button onClick={()=>{setAnswer(1); console.log(answer)}}>Yes</Button>
+                        <Button onClick={()=>{setAnswer(2); console.log(answer)}}>No</Button>
+                    </ButtonGroup>
+                </Grid>
+            </Fragment>
 
-    else if(answer ===2) output=
-    <Fragment>
-        <Grid item >
-        <Typography color="textPrimary"  variant='h6' style={{marginLeft:"1rem"}}>
-            Is the prediction correct?
-        </Typography></Grid>
-        <Grid item >
-        <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group" style={{marginLeft:'3rem'}}>
-        <Button onClick={()=>postFeedback('GLF')}>GLF</Button>
-        <Button onClick={()=>postFeedback('EGY')}>EGY</Button>
-        <Button onClick={()=>postFeedback('IRQ')}>IRQ</Button>
-        <Button onClick={()=>postFeedback('LEV')}>LEV</Button>
-        <Button onClick={()=>postFeedback('NOR')}>NOR</Button>
+    else if(answer === 1) 
+        output = 
+            <Grid item>
+                <Typography color="textPrimary"  variant='h6' style={{marginLeft:"1rem"}}>
+                Thank you for the feedback!
+                </Typography>
+            </Grid>
         
 
-      </ButtonGroup>
-      </Grid>
-      </Fragment>
+    else if(answer === 2) 
+        output =
+            <Fragment>
+                <Grid item>
+                    <Typography color="textPrimary"  variant='h6' style={{marginLeft:"1rem"}}>
+                        Is the prediction correct?
+                    </Typography></Grid>
+                    <Grid item >
+                    <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group" style={{marginLeft:'3rem'}}>
+                    <Button onClick={()=>postFeedback('GLF')}>GLF</Button>
+                    <Button onClick={()=>postFeedback('EGY')}>EGY</Button>
+                    <Button onClick={()=>postFeedback('IRQ')}>IRQ</Button>
+                    <Button onClick={()=>postFeedback('LEV')}>LEV</Button>
+                    <Button onClick={()=>postFeedback('NOR')}>NOR</Button>
+                    </ButtonGroup>
+                </Grid>
+            </Fragment>
 
     return(
-    <MuiThemeProvider theme={theme} >
-    <Grid container justifyContent="center" alight="center">
-   {output}
-    </Grid> 
-    </MuiThemeProvider> 
+        <MuiThemeProvider theme={theme}>
+            <Grid container justifyContent="center" alight="center">
+                {output}
+            </Grid> 
+        </MuiThemeProvider> 
     )
     
     
