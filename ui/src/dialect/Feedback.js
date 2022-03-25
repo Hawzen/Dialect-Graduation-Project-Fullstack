@@ -1,5 +1,5 @@
 import {React,useState,Fragment} from 'react'
-import {Container,Grid, Button,ButtonGroup,Typography,createMuiTheme,MuiThemeProvider, Box} from '@material-ui/core'
+import {Grid, Button,ButtonGroup,Typography,createMuiTheme,MuiThemeProvider} from '@material-ui/core'
 import $ from 'jquery'
 
 const theme = createMuiTheme({
@@ -57,7 +57,7 @@ export default function Feedback({text,preds,success}) {
         output =
             <Fragment>
                 <Grid item >
-                    <Typography color="textPrimary"  variant='h6' style={{marginLeft:"1rem"}}>
+                    <Typography color="textPrimary" variant='h6' style={{marginLeft:"1rem"}}>
                         Is the prediction correct?
                     </Typography></Grid>
                     <Grid item >
@@ -82,7 +82,7 @@ export default function Feedback({text,preds,success}) {
             <Fragment>
                 <Grid item>
                     <Typography color="textPrimary"  variant='h6' style={{marginLeft:"1rem"}}>
-                        Is the prediction correct?
+                        Which dialect does it belong to
                     </Typography></Grid>
                     <Grid item >
                     <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group" style={{marginLeft:'3rem'}}>
@@ -97,7 +97,7 @@ export default function Feedback({text,preds,success}) {
 
     return(
         <MuiThemeProvider theme={theme}>
-            <Grid container justifyContent="center" alignItems="center">
+            <Grid container justifyContent="center" alignItems="center" style={{padding: "1em"}}>
                 {output}
             </Grid> 
         </MuiThemeProvider> 
