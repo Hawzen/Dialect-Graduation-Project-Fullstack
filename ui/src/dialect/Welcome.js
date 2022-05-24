@@ -6,9 +6,6 @@ const theme = createMuiTheme({
         h2:{
         fontFamily: [
         'Merriweather',
-        // 'monospace',
-        // 'roboto',
-        // 'sans-serif'
         ].join(','),
          '@media (max-width:600px)': {
     fontSize: '3.3rem',
@@ -20,9 +17,6 @@ const theme = createMuiTheme({
         fontFamily: [
 
         'Merriweather',
-        // 'monospace',
-        // 'roboto',
-        // 'sans-serif'
         ].join(','),
         fontStyle:'italic'
     

@@ -14,7 +14,8 @@ import GlobePlot from "./GlobePlot";
 import ControlPanel from "./ControlPanel";
 import Paragraphs from "./Paragraphs";
 import ModelsTabs from "./ModelsTabs";
-import Credits from "./Credits"
+import Credits from "./DrawerContent"
+import AppBar from './AppBar';
 
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -85,6 +86,9 @@ export default function Dialect(){
             {/* alignItems="stretch" */}
         <Container fixed>
         <Grid container direction="column" style={{flexWrap:"nowrap"}} >
+            <Grid Item>
+                <AppBar/>
+            </Grid>
 
             <Grid Item>
                 <Welcome/>
@@ -117,9 +121,6 @@ export default function Dialect(){
             />
             </Grid>
 
-            <Grid item>
-                <Credits/>
-            </Grid>
 
             <div style={{padding: "2em"}}/> {/* Footer */}
 

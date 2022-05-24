@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { blue } from '@material-ui/core/colors';
 
 import { 
+  AppBar,
   ThemeProvider, 
   
 } from '@material-ui/core';
