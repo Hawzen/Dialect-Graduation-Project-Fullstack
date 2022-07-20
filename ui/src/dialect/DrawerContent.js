@@ -20,7 +20,7 @@ export default function DrawerContent(){
                       <CreditItem name="Abdulrahman Al-Shawi" twt="none" gh="https://github.com/d7miiZ" li="https://www.linkedin.com/in/abdulrahman-alshawi-26b68b1a6/"/>
                       <CreditItem name="Musaad Al-Qubayl" twt="https://twitter.com/Musaad0A" gh="https://github.com/musaad0" li="https://www.linkedin.com/in/musaadalqubayl/"/>
                       <CreditItem name="Khaled Al-Bader" twt="none" gh="https://github.com/khalid-albadr" li="https://www.linkedin.com/in/khalid-albadr9"/>
-                      <CreditItem name="Abdullah Al-Suwailem" twt="https://twitter.com/abdullah_sk10" gh="https://github.com/Abdullah-Sw" li="https://www.linkedin.com/in/abdullah-alsuwailem-4251741b4/"/>
+                      <CreditItem name="Abdullah Al-Suwailem" twt="https://twitter.com/abdullah_ssk10" gh="https://github.com/Abdullah-Sw" li="https://www.linkedin.com/in/abdullah-alsuwailem-4251741b4/"/>
                   </List>
               </div>
     )
